@@ -1,0 +1,62 @@
+.d_flex{
+    display: flex;
+}
+.users_wrapper{
+    padding-top: 50px;
+}
+.users_block{
+    display: flex;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.avatar_block{
+    width: 15%;
+    text-align: center;
+}
+.avatar_block img{
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+.avatar_block div{
+    display: block;
+}
+.general_info{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+    width: 85%;
+    max-width: 600px;
+}
+.status{
+    margin-top: 20px;
+    font-size: 14px;
+}
+.countryName{
+    margin-top: 20px;
+    font-size: 12px;
+}
+.page{
+    color: #2c2a2c;
+    margin: 0 2px;
+    cursor: pointer;
+}
+.pagination{
+    text-align: center;
+    margin: 10px 0;
+}
+.pagination:hover{
+    color: #3f3c3f;
+}
+.selected{
+    font-weight: bold;
+    color: black;
+}

@@ -1,0 +1,23 @@
+.new_post_block{
+    padding: 20px;
+}
+.new_post_block textarea{
+    width: 100%;
+}
+.new_post_block button{
+    float: right;
+}
+.avatar{
+    padding: 20px;
+}
+.avatar img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.item{
+    color: #32480e;
+}
+.postItem span{
+    color: orangered;
+}

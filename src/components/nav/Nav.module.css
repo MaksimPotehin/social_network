@@ -1,0 +1,32 @@
+.nav{
+    grid-area: nav;
+    background: #73a2bb;
+    padding: 10px;
+}
+.item{
+    padding: 10px;
+}
+.item a{
+    color: #ffffff;
+}
+.item .activeLink{
+    color: deepskyblue;
+}
+.friends{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+.friends_title{
+    margin: 20px 0 0 0;
+    color: #2c2a2c;
+}
+.avatar{
+    padding: 3px;
+    text-align: center;
+}
+.avatar img{
+  width: 100%;
+}

@@ -1,0 +1,13 @@
+.content{
+    grid-area: c;
+    background: #eee;
+}
+.content img{
+    max-width: 100%;
+}
+.avatar{
+    padding: 20px;
+}
+.avatar img{
+    width: 120px;
+}
