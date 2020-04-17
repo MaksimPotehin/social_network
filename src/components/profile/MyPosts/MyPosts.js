@@ -3,12 +3,8 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 const MyPosts = (props) =>{
-    console.log('props', props);
     let state = props.profilePage;
-    console.log('state', state);
-
     let newPost = React.createRef();
-
     let onAddMessage = () => {
         let text = newPost.current.value;
         props.addPost(text)

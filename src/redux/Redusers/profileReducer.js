@@ -1,4 +1,4 @@
-import {ADD_POST, CHANGE_VALUE} from "../actionType";
+import {ADD_POST, CHANGE_VALUE, SET_USER_PROFILE} from "../actionType";
 
 const initialState = {
     postsData : [
@@ -6,7 +6,8 @@ const initialState = {
         { id:1, message:'Hey hey hey', likeCount: 9},
         { id:1, message:'Yo', likeCount: 34}
     ],
-    textareaValue: 'default'
+    textareaValue: 'default',
+    profile: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -28,17 +29,26 @@ const profileReducer = (state = initialState, action) => {
                 ...state, textareaValue: action.text
             }
         }
+        case SET_USER_PROFILE: {
+            return {
+                ...state, profile: action.profile
+            }
+        }
         default:
             return state
     }
 };
 
 export const addPost = (text) => {
-    return {type:'ADD_POST', text}
+    return {type: ADD_POST, text}
 };
 
 export const changeValue = (text) => {
-    return {type:'CHANGE_VALUE', text}
+    return {type:CHANGE_VALUE, text}
+};
+
+export const setUserProfile = (profile) => {
+    return {type: SET_USER_PROFILE, profile}
 };
 
 export default profileReducer

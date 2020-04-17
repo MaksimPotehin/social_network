@@ -5,8 +5,6 @@ import DialogItem from "./dialogItem/DialogItem";
 
 
 const Dialogs = (props) => {
-    console.log('props', props)
-
     let state = props.dialogsPage;
     let newMessage = React.createRef();
 
