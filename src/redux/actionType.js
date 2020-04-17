@@ -10,4 +10,6 @@ export const SET_USERS = 'SET_USERS';
 export const TOTAL_COUNT = 'TOTAL_COUNT';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
+export const IS_LOADING = 'IS_LOADING';
+
 
