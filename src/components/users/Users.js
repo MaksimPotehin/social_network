@@ -20,8 +20,8 @@ let Users = (props) => {
                             <img className={s.avatar} src={user.photos.small != null ? user.photos.small : default_avatar} alt=""/>
                         </NavLink>
                         {user.followed ?
-                            <button onClick={() => props.unfollow(user.id)} >UnFollow</button>
-                            : <button onClick={() => props.follow(user.id)}>Follow</button> }
+                            <button disabled={props.isFollowing.some( id => id === user.id)} onClick={() => props.unfollow(user.id)} >UnFollow</button>
+                            : <button disabled={props.isFollowing.some( id => id === user.id)} onClick={() => props.follow(user.id)}>Follow</button> }
                     </div>
                     <div className={s.general_info}>
                         <div>

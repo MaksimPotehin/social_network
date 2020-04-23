@@ -1,4 +1,5 @@
 import {ADD_POST, CHANGE_VALUE, SET_USER_PROFILE} from "../actionType";
+import {getProfileApi, usersApi as getUsers} from "../../api/api";
 
 const initialState = {
     postsData : [
@@ -38,6 +39,16 @@ const profileReducer = (state = initialState, action) => {
             return state
     }
 };
+
+
+export const getProfile = (userId) => {
+    return dispatch => {
+        getUsers.getProfile(userId)
+        .then(data => {
+            dispatch(setUserProfile(data))
+        })
+    }
+}
 
 export const addPost = (text) => {
     return {type: ADD_POST, text}

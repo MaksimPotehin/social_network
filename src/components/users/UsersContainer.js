@@ -1,30 +1,26 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
-import {follow, is_loading, set_page, set_users, total_count, unfollow} from "../../redux/Redusers/usersReducer";
-import axios from "axios";
+import {
+    follow,
+    getUsers,
+    is_following,
+    is_loading,
+    total_count, unfollow,
+} from "../../redux/Redusers/usersReducer";
 import Preloader from "../Preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/authRedirect";
+import Dialogs from "../dialogs/Dialogs";
 
 class UsersComponent extends Component{
 
     componentDidMount() {
-        this.props.is_loading(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.selectedPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.is_loading(false)
-                this.props.set_users(response.data.items)
-                this.props.total_count(response.data.totalCount)
-            })
+        this.props.getUsers(this.props.selectedPage, this.props.pageSize)
     }
 
     selectPage = (item) => {
-        this.props.is_loading(true)
-        this.props.set_page(item)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${item}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.is_loading(false);
-                this.props.set_users(response.data.items)
-            })
+        this.props.getUsers(item, this.props.pageSize)
     };
     render() {
         return <>
@@ -32,12 +28,14 @@ class UsersComponent extends Component{
                     <Preloader/>
                 : <Users
                     selectPage={this.selectPage}
+                    isFollowing={this.props.isFollowing}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
                     selectedPage={this.props.selectedPage}
                     pageSize={this.props.pageSize}
                     users={this.props.users}
                     totalUsersCount= {this.props.totalUsersCount}
+                    getUsers={this.props.getUsers}
                 />
             }
         </>
@@ -50,21 +48,12 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         selectedPage: state.usersPage.selectedPage,
-        isLoading: state.usersPage.isLoading
+        isLoading: state.usersPage.isLoading,
+        isFollowing: state.usersPage.isFollowing
     }
 };
 
-// let mapDispatchToProps = (dispatch) => {
-//     return{
-//         onFollow: (userId) => dispatch(follow(userId)),
-//         onUnFollow: (userId) => dispatch(unfollow(userId)),
-//         onSetUsers: (users) => dispatch(set_users(users)),
-//         onSetPage: (selectedPage) => dispatch(set_page(selectedPage)),
-//         setTotalCount: (selectedPage) => dispatch(total_count(selectedPage)),
-//         is_loading: (types) => dispatch(is_loading(types))
-//     }
-// };
-
-const UsersContainer = connect(mapStateToProps, {follow, unfollow, set_users, set_page, total_count, is_loading})(UsersComponent);
-
-export default UsersContainer
+export default compose(
+    connect(mapStateToProps, {follow, unfollow, total_count, is_loading, is_following, getUsers }),
+    withAuthRedirect
+)(UsersComponent)

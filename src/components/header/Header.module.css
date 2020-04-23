@@ -5,3 +5,17 @@
 .header img {
     width: 60px;
 }
+.auth_block{
+    float: right;
+    padding-top: 15px;
+}
+.auth_block a{
+    color: white;
+    padding: 15px 50px;
+    box-sizing: border-box;
+    font-size: 14px;
+    cursor: pointer;
+}
+.auth_block a:hover{
+    color: #d4d4d4;
+}

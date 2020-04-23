@@ -1,7 +1,8 @@
-import {createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import {reducers} from "./Redusers/rootReducers";
+import reduxThunk from "redux-thunk";
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(reduxThunk));
 
 window.store = store
 

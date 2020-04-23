@@ -7,10 +7,13 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
+export const IS_FOLLOWING = 'IS_FOLLOWING';
 export const SET_USERS = 'SET_USERS';
 export const TOTAL_COUNT = 'TOTAL_COUNT';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 export const IS_LOADING = 'IS_LOADING';
+
+export const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 
 
