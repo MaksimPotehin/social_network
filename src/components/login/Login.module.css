@@ -1,0 +1,29 @@
+.login_form{
+    padding: 10px;
+    border: 1px solid #757575;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.login_form input{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #aeaeae;
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+}
+.login_form input:focus{
+    outline: none;
+}
+.login_form .btn{
+    width: 90px;
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #aeaeae;
+    cursor: pointer;
+}
+.login_form .btn:hover{
+   border: 1px solid #757575;
+}
