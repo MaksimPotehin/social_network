@@ -1,4 +1,4 @@
-import {ADD_POST, CHANGE_VALUE, SET_STATUS, SET_USER_PROFILE} from "../actionType";
+import {ADD_POST, SET_STATUS, SET_USER_PROFILE} from "../actionType";
 import {profileApi} from "../../api/api";
 
 const initialState = {

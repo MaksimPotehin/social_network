@@ -1,5 +1,6 @@
-import {SET_AUTH_USER_DATA, SET_USER_LOGIN} from "../actionType";
+import {SET_AUTH_USER_DATA} from "../actionType";
 import {authApi} from "../../api/api";
+import {stopSubmit} from "redux-form";
 
 const initialState = {
     id:null,
@@ -14,7 +15,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.data,
-                isAuth: true
             }
         }
         default:
@@ -23,32 +23,40 @@ const authReducer = (state = initialState, action) => {
 };
 
 
-export const auth = () =>{
+export const auth = () => (dispatch) => {
+   return authApi.me()
+        .then(data => {
+            if(data.resultCode === 0){
+                let {id , email, login} = data.data;
+                dispatch(setAuthData(id , email, login, true))
+            }
+        })
+}
+export const userLogin = ( email, password, rememberMe) =>{
     return dispatch => {
-        authApi.me()
-            .then(data => {
-                if(data.resultCode === 0){
-                    dispatch(setAuthData(data.data))
+        authApi.login( email, password, rememberMe)
+            .then(response => {
+                if(response.data.resultCode === 0){
+                    dispatch(auth())
+                }else {
+                    dispatch(stopSubmit("login", {_error: response.data.messages[0]} ))
                 }
             })
     }
 }
-export const setUserLogin = (loginData) =>{
+export const userLogout = () =>{
     return dispatch => {
-        authApi.login(loginData)
+        authApi.logout()
             .then(response => {
                 if(response.data.resultCode === 0){
-                    console.log(response.data.data.userId)
-                    let data = response.data
+                    dispatch(setAuthData(  null, null, null , false))
                 }
             })
     }
 }
 
-export const setAuthData = (data) => {
-    return {type:SET_AUTH_USER_DATA, data}
+export const setAuthData = (id , email, login, isAuth) => {
+    return {type:SET_AUTH_USER_DATA, data: { id , email, login, isAuth }}
 };
-// export const setUserLogin = (loginData) => {
-//     return{type:SET_USER_LOGIN, loginData}
-// }
+
 export default authReducer

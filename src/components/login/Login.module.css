@@ -9,7 +9,7 @@
     background-color: transparent;
     border-bottom: 1px solid #aeaeae;
     display: block;
-    margin: 20px auto;
+    margin: 20px auto 5px auto;
     width: 100%;
 }
 .login_form input:focus{
@@ -26,4 +26,13 @@
 }
 .login_form .btn:hover{
    border: 1px solid #757575;
+}
+.formError{
+    border: 1px solid red;
+    color: orangered;
+    padding: 7px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: 10px 0;
 }

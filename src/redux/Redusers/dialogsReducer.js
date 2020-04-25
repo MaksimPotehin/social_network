@@ -1,4 +1,4 @@
-import {ADD_MESSAGE, CHANGE_DIALOGS_VALUE} from "../actionType";
+import {ADD_MESSAGE} from "../actionType";
 
 const initialState = {
     dialogsData : [
