@@ -57,7 +57,7 @@ const usersReducer = (state = initialState, action) => {
 
 
 
-export const getUsers = (selectedPage, pageSize) => {
+export const requestUsers = (selectedPage, pageSize) => {
     return (dispatch) => {
         dispatch(is_loading(true))
         dispatch(set_page(selectedPage))

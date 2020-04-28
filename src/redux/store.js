@@ -1,5 +1,5 @@
 import {applyMiddleware, createStore} from "redux";
-import {reducers} from "./Redusers/rootReducers";
+import {reducers} from "./redusers/rootReducers";
 import reduxThunk from "redux-thunk";
 
 let store = createStore(reducers, applyMiddleware(reduxThunk));

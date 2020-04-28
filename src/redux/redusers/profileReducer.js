@@ -40,7 +40,7 @@ const profileReducer = (state = initialState, action) => {
 };
 
 
-export const getProfile = (userId) => {
+export const getProfileInfo = (userId) => {
     return dispatch => {
         profileApi.getProfile(userId)
         .then(data => {
@@ -48,7 +48,7 @@ export const getProfile = (userId) => {
         })
     }
 }
-export const getStatus = (userId) => {
+export const getProfileStatus = (userId) => {
     return dispatch => {
         profileApi.getStatus(userId)
             .then(data => {

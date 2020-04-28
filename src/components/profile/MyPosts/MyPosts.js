@@ -3,14 +3,14 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
 import {Textarea} from "../../../common/FormsControl/FormsControl";
-import {maxLengthCreator, required} from "../../../helper/FormValidation/FromValidation";
+import {minLengthCreator} from "../../../helper/FormValidation/FromValidation";
 
-const maxLength10 = maxLengthCreator(10)
+const minLength5 = minLengthCreator(5)
 
 const AddProfilePost = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
-            <Field placeholder={'textarea'} name={'newPost'} component={Textarea} validate={[required, maxLength10]} cols="40" rows="5"/>
+            <Field placeholder={'textarea'} name={'newPost'} component={Textarea} validate={[minLength5]} cols="40" rows="5"/>
             <button>Send</button>
         </form>
     )

@@ -3,24 +3,29 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {
     follow,
-    getUsers,
     is_following,
-    is_loading,
+    is_loading, requestUsers,
     total_count, unfollow,
-} from "../../redux/Redusers/usersReducer";
+} from "../../redux/redusers/usersReducer";
 import Preloader from "../Preloader/Preloader";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/authRedirect";
-import Dialogs from "../dialogs/Dialogs";
+import {
+    getIsFollowing,
+    getIsLoading,
+    getPageSize,
+    getSelectedPage,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/selectors/usersSelector";
 
 class UsersComponent extends Component{
 
     componentDidMount() {
-        this.props.getUsers(this.props.selectedPage, this.props.pageSize)
+        this.props.requestUsers(this.props.selectedPage, this.props.pageSize)
     }
 
     selectPage = (item) => {
-        this.props.getUsers(item, this.props.pageSize)
+        this.props.requestUsers(item, this.props.pageSize)
     };
     render() {
         return <>
@@ -35,7 +40,7 @@ class UsersComponent extends Component{
                     pageSize={this.props.pageSize}
                     users={this.props.users}
                     totalUsersCount= {this.props.totalUsersCount}
-                    getUsers={this.props.getUsers}
+                    getUsers={this.props.requestUsers}
                 />
             }
         </>
@@ -44,16 +49,16 @@ class UsersComponent extends Component{
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        selectedPage: state.usersPage.selectedPage,
-        isLoading: state.usersPage.isLoading,
-        isFollowing: state.usersPage.isFollowing
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        selectedPage: getSelectedPage(state),
+        isLoading: getIsLoading(state),
+        isFollowing: getIsFollowing(state)
     }
 };
 
 export default compose(
-    connect(mapStateToProps, {follow, unfollow, total_count, is_loading, is_following, getUsers }),
+    connect(mapStateToProps, {follow, unfollow, total_count, is_loading, is_following, requestUsers }),
     // withAuthRedirect
 )(UsersComponent)
