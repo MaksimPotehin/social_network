@@ -26,7 +26,6 @@ class ProfileContainer extends Component{
     }
 
     render() {
-        console.log('props.profile',this.props.profile)
         return ( <Profile {...this.props} profile={this.props.profile} updateStatus={this.props.updateStatus} status={this.props.status} getProfile={this.props.getProfile}/> )
     }
 }

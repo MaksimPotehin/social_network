@@ -16,11 +16,9 @@ const AddProfilePost = (props) => {
     )
 }
 
-const MyPosts = (props) =>{
+const MyPosts = React.memo((props) => {
     let state = props.profilePage;
-
     let addPost = (fromData) => {
-        console.log('11111')
         props.addPost(fromData.newPost)
     }
 
@@ -35,5 +33,5 @@ const MyPosts = (props) =>{
                 <Post posts={state.postsData}/>
             </div>
     )
-}
+})
 export default MyPosts

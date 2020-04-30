@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Login.module.css"
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
-import {Input} from "../../common/FormsControl/FormsControl";
+import {createdField, Input} from "../../common/FormsControl/FormsControl";
 import {maxLengthCreator, minLengthCreator, required} from "../../helper/FormValidation/FromValidation";
 import {userLogin} from "../../redux/redusers/AuthReducer";
 import {Redirect} from "react-router-dom";
@@ -15,14 +15,13 @@ const LoginForm = (props) => {
     return(
         <form onSubmit={props.handleSubmit} className={s.login_form}>
             <div className={s.form_group}>
-                <Field type={"text"} name={'Email'} placeholder={"Email"} validate={[required,maxLength, minLength]} component={Input}/>
+                {createdField('Email',[required,maxLength, minLength], 'Input' , 'Email', 'text')}
             </div>
             <div className={s.form_group}>
-                <Field type={"text"} name={'Password'} type={"password"} placeholder={"Password"} validate={[required,maxLength, minLength]} component={Input}/>
+                {createdField('Password',[required,maxLength, minLength], 'Input' , 'Password', 'password')}
             </div>
             <div className={s.form_group}>
-                <Field id='remember_me' name={'rememberMe'} type={"checkbox"} component={'input'}/>
-                {/*<label htmlFor="remember_me">remember me</label>*/}
+                {createdField(null,[], 'input' , 'rememberMe', 'checkbox')}
             </div>
             {props.error ? <div className={s.formError}>
                 {props.error}
