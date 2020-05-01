@@ -1,7 +1,6 @@
 import React from "react";
 import s from './FormsControl.module.css'
 import {Field} from "redux-form";
-import {required} from "../../helper/FormValidation/FromValidation";
 
 export const Textarea = ({input, meta, ...props}) => {
     let isError = meta.touched && meta.error

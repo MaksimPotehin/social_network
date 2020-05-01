@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import MessageItem from "./messageItem/MessageItem";
 import DialogItem from "./dialogItem/DialogItem";
 import {Field, reduxForm} from "redux-form";
-import {Textarea} from "../../common/FormsControl/FormsControl";
+import {Textarea} from "../common/FormsControl/FormsControl";
 import {maxLengthCreator, required} from "../../helper/FormValidation/FromValidation";
 
 

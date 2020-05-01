@@ -2,17 +2,22 @@ import React from "react";
 import s from './Users.module.css'
 import default_avatar from '../../assets/images/631929649c.png'
 import {NavLink} from "react-router-dom";
+import Pagination from "../common/Pagination/Pagination";
 
 
 let Users = (props) => {
-    let {selectedPage, pageSize, totalUsersCount, users } = props;
-    let pageCount = Math.ceil(totalUsersCount / pageSize) ;
-    let pages = [];
-    for (let i = 1 ; i <= pageCount; i++){
-        pages.push(i)
-    }
+    console.log('render')
+    let {selectPage, selectedPage, pageSize, totalItemsCount, users} = props;
+
     return(
         <div className={s.users_wrapper}>
+            <Pagination
+                        pageSize={pageSize}
+                        selectPage={selectPage}
+                        selectedPage={selectedPage}
+                        pagesInArray={10}
+                        totalItemsCount={totalItemsCount}
+            />
             {users.map((user) => (
                 <div className={s.users_block} key={user.id}>
                     <div className={s.avatar_block}>
@@ -35,11 +40,6 @@ let Users = (props) => {
                     </div>
                 </div>
             ))}
-            <div className={s.pagination}>
-                {pages.map((item,idx)=>{
-                    return <span onClick={() => props.selectPage(item)} className={(selectedPage === item ? s.selected + ' ':'') + s.page} key={idx}> {item} </span>
-                })}
-            </div>
         </div>
     )
 }

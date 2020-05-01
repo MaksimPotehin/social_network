@@ -1,0 +1,19 @@
+.page{
+    color: #2c2a2c;
+    margin: 0 2px;
+    cursor: pointer;
+}
+.pagination{
+    text-align: center;
+    margin: 10px 0;
+}
+.pagination:hover{
+    color: #3f3c3f;
+}
+.selected{
+    font-weight: bold;
+    color: black;
+}
+.prevPagesArr, .nextPagesArr {
+    display: inline-block;
+}

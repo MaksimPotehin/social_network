@@ -2,20 +2,14 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-    follow,
-    is_following,
-    is_loading, requestUsers,
-    total_count, unfollow,
+    follow, is_following, is_loading,
+    requestUsers, total_count, unfollow,
 } from "../../redux/redusers/usersReducer";
 import Preloader from "../Preloader/Preloader";
 import {compose} from "redux";
 import {
-    getIsFollowing,
-    getIsLoading,
-    getPageSize,
-    getSelectedPage,
-    getTotalUsersCount,
-    getUsers
+    getIsFollowing, getIsLoading, getPageSize,
+    getSelectedPage, getTotalUsersCount, getUsers
 } from "../../redux/selectors/usersSelector";
 
 class UsersComponent extends Component{
@@ -39,7 +33,7 @@ class UsersComponent extends Component{
                     selectedPage={this.props.selectedPage}
                     pageSize={this.props.pageSize}
                     users={this.props.users}
-                    totalUsersCount= {this.props.totalUsersCount}
+                    totalItemsCount= {this.props.totalUsersCount}
                     getUsers={this.props.requestUsers}
                 />
             }

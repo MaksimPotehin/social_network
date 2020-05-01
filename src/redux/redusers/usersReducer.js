@@ -4,7 +4,7 @@ import {updateObjInArray} from "../../helper/objectHelper";
 
 const initialState = {
     users: [],
-    pageSize: 100,
+    pageSize: 50,
     totalUsersCount: 0,
     selectedPage: 1,
     isLoading: true,

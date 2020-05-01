@@ -52,6 +52,7 @@
 .pagination{
     text-align: center;
     margin: 10px 0;
+    align-items: center;
 }
 .pagination:hover{
     color: #3f3c3f;
