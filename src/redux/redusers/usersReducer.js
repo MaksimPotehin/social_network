@@ -52,9 +52,9 @@ export const requestUsers = (selectedPage, pageSize) => {
         dispatch(is_loading(true))
         dispatch(set_page(selectedPage))
         let response = await usersApi.getUsers(selectedPage, pageSize)
-        dispatch(is_loading(false))
         dispatch(set_users(response.data.items))
         dispatch(total_count(response.data.totalCount))
+        dispatch(is_loading(false))
     }
 }
 

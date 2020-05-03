@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import s from './Pagination.module.css'
 
 const Pagination = ({pagesInArray = 10, totalItemsCount, pageSize, selectPage, selectedPage}) => {
@@ -10,8 +10,13 @@ const Pagination = ({pagesInArray = 10, totalItemsCount, pageSize, selectPage, s
         items.push(i)
     }
 
-    let currentArrayItem = Math.ceil(itemCount / pagesInArray)
+    let countArrayItem = Math.ceil(itemCount / pagesInArray)
     let [arrayItemNumber, setArrayItemNumber] = useState(1)
+
+    useEffect(() => {
+        setArrayItemNumber(arrayItemNumber)
+    },[])
+
     let leftItemArrayPage = (arrayItemNumber - 1) * pagesInArray + 1;
     let rightItemArrayPage = arrayItemNumber * pagesInArray;
 
@@ -23,7 +28,7 @@ const Pagination = ({pagesInArray = 10, totalItemsCount, pageSize, selectPage, s
             {filteredItems.map((item,idx)=>{
                 return <span onClick={() => selectPage(item)} className={(selectedPage === item ? s.selected + ' ':'') + s.page} key={idx}> {item} </span>
             })}
-            {currentArrayItem > arrayItemNumber ? <div className={s.nextPagesArr} onClick={()=>{setArrayItemNumber(arrayItemNumber + 1)}}>{`>>`}</div> : null}
+            {countArrayItem > arrayItemNumber ? <div className={s.nextPagesArr} onClick={()=>{setArrayItemNumber(arrayItemNumber + 1)}}>{`>>`}</div> : null}
         </div>
     )
 }
