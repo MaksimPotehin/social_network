@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Login.module.css"
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {createdField, Input} from "../common/FormsControl/FormsControl";
 import {maxLengthCreator, minLengthCreator, required} from "../../helper/FormValidation/FromValidation";
@@ -47,7 +47,6 @@ const Login = (props) => {
             <h1>LOGIN</h1>
             <LoginReduxForm setUserLogin={props.userLogin} onSubmit={onSubmit} />
         </div>
-
     )
 }
 let  mapStateToProps = (state) =>{

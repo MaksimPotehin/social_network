@@ -10,3 +10,6 @@ export const getUserId = (state) => {
 export const getIsAuth = (state) => {
     return state.authProfile.isAuth
 }
+export const getEditMode = (state) => {
+    return state.profilePage.formEditMode
+}

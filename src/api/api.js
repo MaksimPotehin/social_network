@@ -32,6 +32,18 @@ export const profileApi = {
         return instance.get(`profile/${userId}`)
             .then(response => response.data)
     },
+    setPhoto (photoFile) {
+        const formData = new FormData()
+        formData.append('image', photoFile)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
+    updateProfileData (formData) {
+        return instance.put(`profile`, {formData})
+    },
     getStatus (userId) {
         return instance.get(`/profile/status/${userId}`)
             .then(response => response.data)

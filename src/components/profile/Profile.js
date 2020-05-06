@@ -4,13 +4,20 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Preloader from "../Preloader/Preloader";
 
-const Profile = (props) =>{
-    if (!props.profile){
+const Profile = ({profile, onEditMode, formEditMode, updateStatus, status, updateProfileData, updateProfilePhoto, isOwner}) =>{
+    if (!profile){
         return <Preloader/>
     }
     return(
         <div className={s.content}>
-            <ProfileInfo profile={props.profile} updateStatus={props.updateStatus} status={props.status}/>
+            <ProfileInfo updateProfileData={updateProfileData}
+                         profile={profile}
+                         onEditMode={onEditMode}
+                         updateStatus={updateStatus}
+                         status={status}
+                         editMode={formEditMode}
+                         updateProfilePhoto={updateProfilePhoto}
+                         isOwner={isOwner}/>
             <MyPostsContainer />
         </div>
     )

@@ -2,6 +2,8 @@ export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 export const SET_STATUS = 'SET_STATUS';
+export const FORM_EDIT_MODE = 'FORM_EDIT_MODE';
+export const SET_PROFILE_PHOTO = 'SET_PROFILE_PHOTO';
 
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 

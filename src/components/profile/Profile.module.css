@@ -16,3 +16,9 @@
 .profile_status{
     margin-bottom: 15px;
 }
+.info{
+    padding-left: 20px;
+}
+.contacts .item{
+    padding: 2px 2px 2px 20px;
+}
