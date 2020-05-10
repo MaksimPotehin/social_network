@@ -42,7 +42,7 @@ export const profileApi = {
         })
     },
     updateProfileData (formData) {
-        return instance.put(`profile`, {formData})
+        return instance.put(`profile`, formData)
     },
     getStatus (userId) {
         return instance.get(`/profile/status/${userId}`)

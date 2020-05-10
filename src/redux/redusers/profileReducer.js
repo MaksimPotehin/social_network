@@ -77,12 +77,13 @@ export const updateStatus = (status) => {
     }
 }
 
-export const updateProfileData = (formData) => {
-    console.log('IN')
-    return async dispatch => {
-        let response = await profileApi.updateProfileData(formData)
+export const updateProfileData = (profileData) => {
+    return async (dispatch, getState) => {
+        const userId = getState().authProfile.id
+        const response = await profileApi.updateProfileData(profileData)
         if (response.data.resultCode === 0) {
-            console.log('YES')
+            dispatch(getProfileInfo(userId))
+            dispatch(onEditMode(false))
         }
     }
 }

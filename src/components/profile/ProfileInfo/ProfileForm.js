@@ -26,7 +26,7 @@ const ProfileForm = ({profile, handleSubmit}) => {
                 <b>Contacts </b>: {Object.keys(profile.contacts).map((item) => (
                     <div className={s.item}>
                         <i>{item}</i>: {profile.contacts[item]}
-                        {createdField(item,[], Input , item, 'text')}
+                        {createdField(item,[], Input , 'contacts.'+ item, 'text')}
                     </div>
                 )
             )}
