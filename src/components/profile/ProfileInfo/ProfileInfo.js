@@ -22,11 +22,11 @@ const ProfileInfo = (props) => {
             <div className={`${s.avatar}`}>
                 <img src={profile.photos.large ? profile.photos.large : defaultAvatar} alt=""/>
                 {isOwner && <input className={s.set_photo} type="file" onChange={onSetPhoto}/>}
-                <ProfileStatus updateStatus={updateStatus} status={status}/>
+                <ProfileStatus isOwner={isOwner} updateStatus={updateStatus} status={status}/>
             </div>
             {editMode
                 ? <ProfileEditorReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
-                : <ProfileDataInfo onEditMode={onEditMode} profile={profile}/>
+                : <ProfileDataInfo isOwner={isOwner} onEditMode={onEditMode} profile={profile}/>
             }
         </div>
     )

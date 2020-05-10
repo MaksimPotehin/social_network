@@ -11,7 +11,9 @@ const ProfileStatus = (props) => {
     },[props.status])
 
     let editModeOn = () => {
-        setEditMode(true)
+        if (props.isOwner){
+            setEditMode(true)
+        }
     }
     let editModeOff = () => {
         setEditMode(false)
