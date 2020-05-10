@@ -19,9 +19,12 @@ export const IS_LOADING = 'IS_LOADING';
 export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
 export const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
-export const SET_USER_LOGIN = 'SET_USER_LOGIN'
+// export const SET_USER_LOGIN = 'SET_USER_LOGIN'
 export const LOGIN = 'LOGIN'
-export const LOGOUT = 'LOGOUT'
+// export const LOGOUT = 'LOGOUT'
+
+export const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS'
+
 
 
 

@@ -11,9 +11,9 @@ import {Redirect} from "react-router-dom";
 const maxLength = maxLengthCreator(20)
 const minLength = minLengthCreator(6)
 
-const LoginForm = (props) => {
+const LoginForm = ({captchaUrl, handleSubmit, error}) => {
     return(
-        <form onSubmit={props.handleSubmit} className={s.login_form}>
+        <form onSubmit={handleSubmit} className={s.login_form}>
             <div className={s.form_group}>
                 {createdField('Email',[required,maxLength, minLength], 'Input' , 'Email', 'text')}
             </div>
@@ -23,9 +23,11 @@ const LoginForm = (props) => {
             <div className={s.form_group}>
                 {createdField(null,[], 'input' , 'rememberMe', 'checkbox')}
             </div>
-            {props.error ? <div className={s.formError}>
-                {props.error}
+            {error ? <div className={s.formError}>
+                {error}
             </div> : null }
+            {captchaUrl && <img src={captchaUrl} />}
+            {captchaUrl && createdField('symbol from image',[required], 'input' , 'captcha', 'text')}
             <button className={s.btn}>Login</button>
         </form>
     )
@@ -35,8 +37,8 @@ let LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        let { Email, Password, rememberMe } = formData
-        props.userLogin( Email, Password, rememberMe )
+        let { Email, Password, rememberMe, captcha } = formData
+        props.userLogin( Email, Password, rememberMe, captcha )
     }
     if(props.isAuth){
         return <Redirect to='/profile'/>
@@ -45,13 +47,14 @@ const Login = (props) => {
     return(
         <div>
             <h1>LOGIN</h1>
-            <LoginReduxForm setUserLogin={props.userLogin} onSubmit={onSubmit} />
+            <LoginReduxForm setUserLogin={props.userLogin} captchaUrl={props.captchaUrl} onSubmit={onSubmit} />
         </div>
     )
 }
 let  mapStateToProps = (state) =>{
     return{
-        isAuth: state.authProfile.isAuth
+        isAuth: state.authProfile.isAuth,
+        captchaUrl: state.authProfile.captchaUrl
     }
 }
 
