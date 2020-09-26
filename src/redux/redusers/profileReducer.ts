@@ -1,18 +1,22 @@
 import {ADD_POST, DELETE_POST, FORM_EDIT_MODE, SET_PROFILE_PHOTO, SET_STATUS, SET_USER_PROFILE} from "../actionType";
 import {profileApi} from "../../api/api";
+import {PostType, ProfileType} from "../../types/types";
+
 
 const initialState = {
     postsData: [
         {id: 1, message: 'First post', likeCount: 12},
         {id: 1, message: 'Hey hey hey', likeCount: 9},
         {id: 1, message: 'Yo', likeCount: 34}
-    ],
-    profile: null,
+    ] as Array<PostType>,
+    profile: null as ProfileType | null,
     formEditMode: false,
     status: ''
 }
 
-const profileReducer = (state = initialState, action) => {
+export type initialStateProfileReducer = typeof initialState
+
+const profileReducer = (state = initialState, action: any):initialStateProfileReducer => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -47,7 +51,7 @@ const profileReducer = (state = initialState, action) => {
         }
         case SET_PROFILE_PHOTO: {
             return {
-                ...state, profile: {...state.profile, photos: action.photos}
+                ...state, profile: {...state.profile, photos: action.photos} as ProfileType
             }
         }
         default:
@@ -56,20 +60,20 @@ const profileReducer = (state = initialState, action) => {
 };
 
 
-export const getProfileInfo = (userId) => {
-    return async dispatch => {
+export const getProfileInfo = (userId: number) => {
+    return async (dispatch: any) => {
         let data = await profileApi.getProfile(userId)
         dispatch(setUserProfile(data))
     }
 }
-export const getProfileStatus = (userId) => {
-    return async dispatch => {
+export const getProfileStatus = (userId: number) => {
+    return async (dispatch: any) => {
         let data = await profileApi.getStatus(userId)
         dispatch(setStatus(data))
     }
 }
-export const updateStatus = (status) => {
-    return async dispatch => {
+export const updateStatus = (status: string) => {
+    return async (dispatch: any) => {
         let response = await profileApi.updateStatus(status)
         if (response.data.resultCode === 0) {
             dispatch(setStatus(status))
@@ -77,8 +81,8 @@ export const updateStatus = (status) => {
     }
 }
 
-export const updateProfileData = (profileData) => {
-    return async (dispatch, getState) => {
+export const updateProfileData = (profileData: ProfileType) => {
+    return async (dispatch:any, getState:any) => {
         const userId = getState().authProfile.id
         const response = await profileApi.updateProfileData(profileData)
         if (response.data.resultCode === 0) {
@@ -88,8 +92,8 @@ export const updateProfileData = (profileData) => {
     }
 }
 
-export const updateProfilePhoto = (photoFile) => {
-    return async dispatch => {
+export const updateProfilePhoto = (photoFile: string | null) => {
+    return async (dispatch: any) => {
         let response = await profileApi.setPhoto(photoFile)
         if (response.data.resultCode === 0) {
             dispatch(setProfilePhoto(response.data.data.photos))
@@ -97,28 +101,51 @@ export const updateProfilePhoto = (photoFile) => {
     }
 }
 
-
-export const onEditMode = (payload) => {
+type EditModeType = {
+    type: typeof FORM_EDIT_MODE
+    payload: boolean
+}
+export const onEditMode = (payload: boolean): EditModeType => {
     return {type: FORM_EDIT_MODE, payload }
 }
 
-export const deletePost = (postId) => {
+type DeletePostType = {
+    type: typeof DELETE_POST
+    postId: number | null
+}
+export const deletePost = (postId: number | null): DeletePostType => {
     return {type: DELETE_POST, postId}
 }
 
-export const setStatus = (status) => {
+type SetStatusType = {
+    type: typeof SET_STATUS
+    status : string | null
+}
+export const setStatus = (status : string | null): SetStatusType => {
     return {type: SET_STATUS, status}
 };
 
-export const addPost = (text) => {
+type AddPostType = {
+    type: typeof ADD_POST
+    text: string | null
+}
+export const addPost = (text: string | null): AddPostType => {
     return {type: ADD_POST, text}
 };
 
-export const setUserProfile = (profile) => {
+type SetUserProfileType = {
+    type: typeof SET_USER_PROFILE
+    profile: ProfileType
+}
+export const setUserProfile = (profile: ProfileType): SetUserProfileType => {
     return {type: SET_USER_PROFILE, profile}
 };
 
-export const setProfilePhoto = (photos) => {
+type SetProfilePhotoType = {
+    type: typeof SET_PROFILE_PHOTO
+    photos: string | null
+}
+export const setProfilePhoto = (photos: string | null): SetProfilePhotoType => {
     return {type: SET_PROFILE_PHOTO, photos}
 };
 

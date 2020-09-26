@@ -2,8 +2,8 @@ import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import {combineReducers} from "redux";
-import usersReducer from "./usersReducer";
-import authReducer from "./AuthReducer";
+import {usersReducer} from "./usersReducer";
+import authReducer from "./authReducer";
 import { reducer as formReducer } from 'redux-form'
 import appReducer from "./appReducer";
 

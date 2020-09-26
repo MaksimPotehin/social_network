@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Route, withRouter} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/settings/settings";
@@ -29,13 +29,17 @@ class App extends Component{
                 <HeaderContainer/>
                 <NavContainer/>
                 <div className='content'>
-                    <Route path='/profile/:id?' render={ () => <ProfileContainer/>}/>
-                    <Route  path='/dialogs' render={ () => <DialogsContainer/>}/>
-                    <Route path='/users' component={UsersContainer}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>
-                    <Route path='/login' component={Login}/>
+                    <Switch>
+                        <Route path='/profile/:id?' render={ () => <ProfileContainer/>}/>
+                        <Route  path='/dialogs' render={ () => <DialogsContainer/>}/>
+                        <Route path='/users' component={UsersContainer}/>
+                        <Route path='/news' component={News}/>
+                        <Route path='/music' component={Music}/>
+                        <Route path='/settings' component={Settings}/>
+                        <Route path='/login' component={Login}/>
+                        <Route path='/' component={Login}/>
+                        <Route path='*' render={ () => <div>404 page not found</div>}/>
+                    </Switch>
                 </div>
             </div>
         );

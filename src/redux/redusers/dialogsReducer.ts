@@ -1,5 +1,6 @@
 import {ADD_MESSAGE} from "../actionType";
 
+
 const initialState = {
     dialogsData : [
         { id:1, name:'Dimych'},
@@ -13,7 +14,9 @@ const initialState = {
     ],
 }
 
-const dialogsReducer = (state = initialState, action) => {
+type initialStateDialogs = typeof initialState
+
+const dialogsReducer = (state= initialState, action: any):initialStateDialogs => {
     switch (action.type) {
         case ADD_MESSAGE: {
             return {
@@ -26,7 +29,8 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const addMessage = (text) => {
+
+export const addMessage = (text: string) => {
     return {type:'ADD_MESSAGE', text}
 };
 

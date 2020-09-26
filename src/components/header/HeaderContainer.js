@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
-import {auth, userLogout} from "../../redux/redusers/AuthReducer";
+import {auth, userLogout} from "../../redux/redusers/authReducer";
 import {initializeApp} from "../../redux/redusers/appReducer";
 
 

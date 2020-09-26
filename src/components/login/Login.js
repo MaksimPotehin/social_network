@@ -4,8 +4,8 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {createdField, Input} from "../common/FormsControl/FormsControl";
 import {maxLengthCreator, minLengthCreator, required} from "../../helper/FormValidation/FromValidation";
-import {userLogin} from "../../redux/redusers/AuthReducer";
-import {Redirect} from "react-router-dom";
+import {userLogin} from "../../redux/redusers/authReducer";
+import {Redirect} from "react-router-dom";  
 
 
 const maxLength = maxLengthCreator(20)

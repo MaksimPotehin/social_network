@@ -6,9 +6,7 @@ import Pagination from "../common/Pagination/Pagination";
 
 
 let Users = (props) => {
-    console.log('render')
-    let {selectPage, selectedPage, pageSize, totalItemsCount, users} = props;
-
+    let {selectPage, selectedPage, pageSize, totalItemsCount, users, isAuth} = props;
     return(
         <div className={s.users_wrapper}>
             <Pagination
@@ -24,9 +22,15 @@ let Users = (props) => {
                         <NavLink to={'profile/' + user.id}>
                             <img className={s.avatar} src={user.photos.small != null ? user.photos.small : default_avatar} alt=""/>
                         </NavLink>
-                        {user.followed ?
-                            <button disabled={props.isFollowing.some( id => id === user.id)} onClick={() => props.unfollow(user.id)} >UnFollow</button>
-                            : <button disabled={props.isFollowing.some( id => id === user.id)} onClick={() => props.follow(user.id)}>Follow</button> }
+                        {
+                            isAuth ?
+                                <div>
+                                    {user.followed ?
+                                        <button disabled={props.isFollowing.some( id => id === user.id)} onClick={() => props.unfollow(user.id)} >UnFollow</button>
+                                        : <button disabled={props.isFollowing.some( id => id === user.id)} onClick={() => props.follow(user.id)}>Follow</button> }
+                                </div>
+                                : null
+                        }
                     </div>
                     <div className={s.general_info}>
                         <div>

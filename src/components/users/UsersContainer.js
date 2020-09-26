@@ -8,6 +8,7 @@ import {
 import Preloader from "../Preloader/Preloader";
 import {compose} from "redux";
 import {
+    getAuthInfo,
     getIsFollowing, getIsLoading, getPageSize,
     getSelectedPage, getTotalUsersCount, getUsers
 } from "../../redux/selectors/usersSelector";
@@ -35,6 +36,7 @@ class UsersComponent extends Component{
                     users={this.props.users}
                     totalItemsCount= {this.props.totalUsersCount}
                     getUsers={this.props.requestUsers}
+                    isAuth={this.props.isAuth}
                 />
             }
         </>
@@ -43,6 +45,7 @@ class UsersComponent extends Component{
 
 let mapStateToProps = (state) => {
     return {
+        isAuth: getAuthInfo(state),
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),

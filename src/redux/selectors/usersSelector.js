@@ -1,6 +1,13 @@
+import {createSelector} from "reselect";
+
 export const getUsers = (state) => {
     return state.usersPage.users
 }
+export const getUsersSuper = createSelector(getUsers,
+    (users) => {
+    return users.filter(user => user.id === 1)
+})
+
 export const getPageSize = (state) => {
     return state.usersPage.pageSize
 }
@@ -15,4 +22,7 @@ export const getIsLoading = (state) => {
 }
 export const getIsFollowing = (state) => {
     return state.usersPage.isFollowing
+}
+export const getAuthInfo = (state) => {
+    return state.authProfile.isAuth
 }
